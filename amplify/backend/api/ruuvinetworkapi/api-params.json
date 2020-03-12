@@ -1,0 +1,55 @@
+{
+    "paths": [
+        {
+            "name": "/post",
+            "lambdaFunction": "ruuvinetworkpushlambda",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/get",
+            "lambdaFunction": "ruuvinetworkgetlambda",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
+        }
+    ],
+    "resourceName": "ruuvinetworkapi",
+    "apiName": "ruuvinetworkapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "ruuvinetworkpushlambda"
+        },
+        {
+            "lambdaFunction": "ruuvinetworkgetlambda"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-ruuvinetwork-dev-150047-authRole",
+        "unAuthRoleName": "amplify-ruuvinetwork-dev-150047-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "ruuvinetworkpushlambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "ruuvinetworkgetlambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "tableName": "tags",
+    "partitionKeyName": "tag",
+    "partitionKeyType": "S",
+    "sortKeyName": "timestamp",
+    "sortKeyType": "N"
+}

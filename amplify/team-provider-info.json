@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-ruuvinetwork-dev-150047-authRole",
+            "UnauthRoleArn": "arn:aws:iam::038625053741:role/amplify-ruuvinetwork-dev-150047-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::038625053741:role/amplify-ruuvinetwork-dev-150047-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-ruuvinetwork-dev-150047-deployment",
+            "UnauthRoleName": "amplify-ruuvinetwork-dev-150047-unauthRole",
+            "StackName": "amplify-ruuvinetwork-dev-150047",
+            "StackId": "arn:aws:cloudformation:eu-west-1:038625053741:stack/amplify-ruuvinetwork-dev-150047/7f2c81d0-6461-11ea-b10d-06c1d1eeaccc",
+            "AmplifyAppId": "d2pamx3k3v0y7s"
+        },
+        "categories": {
+            "auth": {
+                "cognito7e51c891": {}
+            }
+        }
+    }
+}
