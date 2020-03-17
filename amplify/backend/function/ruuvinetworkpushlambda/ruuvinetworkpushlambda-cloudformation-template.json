@@ -71,7 +71,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-ruuvinetwork-dev-150047-deployment",
-					"S3Key": "amplify-builds/ruuvinetworkpushlambda-5733477a467a6e556d54-build.zip"
+					"S3Key": "amplify-builds/ruuvinetworkpushlambda-39325a75316f71364c31-build.zip"
 				}
 			}
 		},

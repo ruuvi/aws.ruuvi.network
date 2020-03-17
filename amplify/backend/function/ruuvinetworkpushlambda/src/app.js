@@ -55,50 +55,34 @@ const convertUrlType = (param, type) => {
 }
 
 /************************************
-* HTTP put method for insert object *
-*************************************/
-
-app.put(path, function(req, res) {
-
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
-  }
-  dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
-      res.statusCode = 500;
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'put call succeed!', url: req.url, data: data})
-    }
-  });
-});
-
-/************************************
 * HTTP post method for insert object *
 *************************************/
 
 app.post(path, function(req, res) {
 
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
+    /*for tag in body["gwmac"]["tags"].keys():
+        item = body["gwmac"]["tags"][tag]
+        item["tag"] = tag
+        print(item)
+        table.put_item(Item=item)*/
+  let promises = [];
+  console.log(req);
+  let body = req.body;
+  // TODO: Batch this write to avoid being throttled
+  for(let i in body.gwmac.tags){
+    let item = body.gwmac.tags[i];
+    item.tag = i;
+    let putItemParams = {
+       TableName: tableName,
+       Item: item
+     }
+    promises.push(dynamodb.put(putItemParams).promise());
   }
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
-  }
-  dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
-      res.statusCode = 500;
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'post call succeed!', url: req.url, data: data})
-    }
+  Promise.all(promises).then((data) =>{
+    res.json({success: 'post call succeed!', url: req.url, data: data.length});
+  }).catch((err)=> {
+    res.statusCode = 500;
+    res.json({error: err, url: req.url, body: req.body});
   });
 });
 
