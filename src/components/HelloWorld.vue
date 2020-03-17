@@ -10,9 +10,7 @@
 </template>
 
 <script>
-//import * as axios from "axios"
 import { API } from 'aws-amplify';
-//import * as config from "../aws-exports.js"
 export default {
   name: 'HelloWorld',
   props: {

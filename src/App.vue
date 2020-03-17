@@ -6,13 +6,32 @@
 </template>
 
 <script>
-//import login from './components/login.vue'
-
+import { AmplifyEventBus } from 'aws-amplify-vue'
+import { Auth } from 'aws-amplify'
 export default {
-  name: 'App',
-  /*components: {
-    router
-  }*/
+  name: 'app',
+  data() {
+    return {
+      signedIn: false
+    }
+  },
+  beforeCreate() {
+    AmplifyEventBus.$on('authState', info => {
+      if (info === 'signedIn') {
+        this.signedIn = true
+        this.$router.push('/')
+      }
+      if (info === 'signedOut') {
+        this.$router.push('/login')
+        this.signedIn = false
+      }
+    });
+    Auth.currentAuthenticatedUser()
+      .then(() => {
+        this.signedIn = true
+      })
+      .catch(() => this.signedIn = false)
+  }
 }
 </script>
 
