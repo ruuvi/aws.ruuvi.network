@@ -12,7 +12,9 @@
     "aws-amplify-vue": "^1.1.4",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
+    "color-hash": "^1.0.3",
     "core-js": "^3.6.4",
+    "ojousima.ruuvi_endpoints.ts": "^3.8.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-router": "^3.1.6"
