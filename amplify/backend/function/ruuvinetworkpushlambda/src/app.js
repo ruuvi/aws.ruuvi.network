@@ -69,8 +69,8 @@ app.post(path, function(req, res) {
   console.log(req);
   let body = req.body;
   // TODO: Batch this write to avoid being throttled
-  for(let i in body.gwmac.tags){
-    let item = body.gwmac.tags[i];
+  for(let i in body.data.tags){
+    let item = body.data.tags[i];
     item.tag = i;
     let putItemParams = {
        TableName: tableName,

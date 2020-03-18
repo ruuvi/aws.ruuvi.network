@@ -41,11 +41,6 @@ export default {
       }).catch(error => {
         console.log(error.response)
       });
-      /*
-      API.get(`${config.default.aws_cloud_logic_custom[0].endpoint}/get/${this.tag}`).then(function(data) {
-        console.log(data);
-        self.items = data.data.rows;
-      });*/
     }
   }
 }
