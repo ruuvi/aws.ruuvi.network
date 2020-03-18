@@ -1,21 +1,16 @@
 <template>
-  <div class="hello">
-    <h1> Ruuvi Network with AWS </h1>
-    <input type="text" v-model="tag"/><button @click="onClick()">fetch</button>
-    <p>{{items.length}}</p>
-    <ul>
-      <li v-for="i in items" v-bind:key="i.timestamp">{{i.timestamp}} {{i.rssi}} </li>
-    </ul>
+  <div>
+    <input type="text" v-model="tag"/><button @click="onClick()">fetch</button> 
+    Datapoints: {{items.length}}
   </div>
 </template>
 
 <script>
+
 import { API } from 'aws-amplify';
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+  name: 'FetchData',
   data:function(){
     return {
       tag:"",
@@ -26,7 +21,7 @@ export default {
     onClick: function(){
       let self = this;
       let apiName = 'ruuvinetworkapi';
-      let path = `/get/${this.tag}`;  
+      let path = `/get/${this.tag}`;
       let myInit = { // OPTIONAL
         headers: {}, // OPTIONAL
         response: true, // OPTIONAL (return the entire Axios response object instead of only response.data)
@@ -37,10 +32,17 @@ export default {
       }
       API.get(apiName, path, myInit).then(response => {
         console.log(response);
-        self.items = response.data
+        self.items = response.data;
+        this.emitGlobalDataEvent();
+
       }).catch(error => {
-        console.log(error.response)
+        console.log(error);
       });
+    },
+    // Let other components receive the data
+    emitGlobalDataEvent() {
+      console.log("Emit");
+      this.$emit('tag-data', this.items);
     }
   }
 }

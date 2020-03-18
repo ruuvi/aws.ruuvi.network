@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <amplify-sign-out></amplify-sign-out>
     <router-view/>
+    <amplify-sign-out></amplify-sign-out>
   </div>
 </template>
 
 <script>
 import { AmplifyEventBus } from 'aws-amplify-vue'
 import { Auth } from 'aws-amplify'
+
 export default {
   name: 'app',
   data() {

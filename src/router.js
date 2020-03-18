@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from './components/HelloWorld'
-import login from './components/login'
+import Main from './views/main'
+import Login from './views/login'
 import { Auth } from 'aws-amplify'
 
 Vue.use(Router)
@@ -13,7 +13,7 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: HelloWorld,
+      component: Main,
       meta: {
         requiresAuth: true
       }
@@ -21,7 +21,7 @@ let router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: Login
     }
   ]
 })
