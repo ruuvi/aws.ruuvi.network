@@ -1,6 +1,8 @@
 <template>
   <div>
-    <input type="text" v-model="tag"/><button @click="onClick()">fetch</button> 
+    MAC Address: 
+    <input type="text" v-model="tag"/>
+    <button @click="onClick()">fetch</button> 
     Datapoints: {{items.length}}
   </div>
 </template>
@@ -13,7 +15,7 @@ export default {
   name: 'FetchData',
   data:function(){
     return {
-      tag:"",
+      tag:"c04db14ab635",
       items:[]
     }
   },
@@ -31,7 +33,7 @@ export default {
         }*/
       }
       API.get(apiName, path, myInit).then(response => {
-        console.log(response);
+        //console.log(response);
         self.items = response.data;
         this.emitGlobalDataEvent();
 
@@ -41,8 +43,8 @@ export default {
     },
     // Let other components receive the data
     emitGlobalDataEvent() {
-      console.log("Emit");
-      this.$emit('tag-data', this.items);
+      //console.log("Emit");
+      this.$emit('tag-data', this.items, this.tag);
     }
   }
 }

@@ -26,12 +26,7 @@ export default {
         scales: {
           xAxes: [{
             type: 'time',
-            distribution: 'linear',
-            time: {
-              displayFormats: {
-                quarter: 'MMM YYYY'
-              }
-            }
+            distribution: 'linear'
           }]
         }
       }

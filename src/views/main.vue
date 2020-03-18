@@ -4,7 +4,8 @@
     <fetch-data @tag-data="onTagData"></fetch-data>
     <line-chart-container 
       v-bind:loaded="loaded"
-      v-bind:chartdata="chartdata">
+      v-bind:chartdata="chartdata"
+      :key="tag">
     </line-chart-container>
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
   data:function(){
     return {
       loaded: false,
-      chartdata: null
+      chartdata: null,
+      tag: ""
     }
   },
   methods: {
@@ -41,7 +43,7 @@ export default {
         return this.hexToUnsignedInt(hexString.substr(payloadStart));
       }
     },
-    onTagData(items){
+    onTagData(items, tag){
       //console.log("Received");
       // Sort by timestamp
       items.sort(function(a, b) {
@@ -72,6 +74,7 @@ export default {
           }
             
           delete data["parsedAt"]
+          delete data["mac"]
         }
         // Add charted data to array
         ruuviDatas.push(data);
@@ -91,8 +94,8 @@ export default {
             y: data[property],
             t: data["timestamp"] * 1000}));
           dataSet.hidden = true;
-          dataSet.backgroundColor = colorHash.hex(property);
-          console.log(dataSet.backgroundColor);
+          dataSet.borderColor = colorHash.hex(property);
+          dataSet.fill = false;
           dataSets.push(dataSet);
       }
       this.chartdata = {
@@ -100,6 +103,7 @@ export default {
      };
 
       this.loaded = true;
+      this.tag = tag;
     }
   }
 }
