@@ -18,3 +18,6 @@ Run `amplify deploy`
 
 ## Local development server
 Run `npm run-script serve`
+
+## Push to GH pages
+Run `deploy_gh.sh`
